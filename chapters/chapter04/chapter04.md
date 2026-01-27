@@ -184,6 +184,90 @@ enum MyError {
 
 ---
 
+## 4-6. 테스트 기초
+
+### #[test] 속성
+
+```rust
+// src/lib.rs
+pub fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_add() {
+        assert_eq!(add(2, 3), 5);
+    }
+
+    #[test]
+    fn test_add_negative() {
+        assert_eq!(add(-1, 1), 0);
+    }
+}
+```
+
+### assert 매크로
+
+```rust
+#[test]
+fn test_assertions() {
+    // 조건 확인
+    assert!(1 + 1 == 2);
+
+    // 값 비교
+    assert_eq!(4, 2 + 2);
+    assert_ne!(4, 2 + 3);
+
+    // 커스텀 메시지
+    assert!(true, "This should be true");
+    assert_eq!(4, 4, "Values should be equal");
+}
+```
+
+### 테스트 실행
+
+```bash
+# 모든 테스트 실행
+cargo test
+
+# 특정 테스트만
+cargo test test_add
+
+# 출력 표시
+cargo test -- --nocapture
+
+# 무시된 테스트 실행
+cargo test -- --ignored
+```
+
+### 테스트 속성
+
+```rust
+#[test]
+#[ignore]  // 기본 실행에서 제외
+fn expensive_test() {
+    // 시간이 오래 걸리는 테스트
+}
+
+#[test]
+#[should_panic]  // 패닉 발생 예상
+fn test_panic() {
+    panic!("This should panic");
+}
+
+#[test]
+#[should_panic(expected = "out of range")]
+fn test_specific_panic() {
+    // "out of range" 메시지 포함 패닉 예상
+}
+```
+
+---
+
 ## 예제 파일
 - `examples/error_handling.rs` - 에러 처리 예제
 

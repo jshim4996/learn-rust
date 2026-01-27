@@ -111,7 +111,67 @@ fn main() {
 
 ---
 
-## 3-4. 구조체 정의
+## 3-4. 이터레이터
+
+### 핵심 개념
+
+```rust
+fn main() {
+    let v = vec![1, 2, 3, 4, 5];
+
+    // iter() - 불변 참조
+    for x in v.iter() {
+        println!("{}", x);
+    }
+
+    // into_iter() - 소유권 이동
+    let v2 = vec![1, 2, 3];
+    for x in v2.into_iter() {
+        println!("{}", x);
+    }
+    // v2는 더 이상 사용 불가
+
+    // iter_mut() - 가변 참조
+    let mut v3 = vec![1, 2, 3];
+    for x in v3.iter_mut() {
+        *x *= 2;
+    }
+}
+```
+
+### map, filter, collect
+
+```rust
+fn main() {
+    let v = vec![1, 2, 3, 4, 5];
+
+    // map - 변환
+    let doubled: Vec<i32> = v.iter().map(|x| x * 2).collect();
+
+    // filter - 조건
+    let evens: Vec<&i32> = v.iter().filter(|x| *x % 2 == 0).collect();
+
+    // 체이닝
+    let result: Vec<i32> = v.iter()
+        .filter(|x| *x % 2 == 0)
+        .map(|x| x * 10)
+        .collect();
+
+    // fold (reduce)
+    let sum: i32 = v.iter().fold(0, |acc, x| acc + x);
+}
+```
+
+### JavaScript 비교
+| JavaScript | Rust |
+|------------|------|
+| `arr.map(x => x * 2)` | `v.iter().map(\|x\| x * 2).collect()` |
+| `arr.filter(x => x > 2)` | `v.iter().filter(\|x\| *x > 2).collect()` |
+| `arr.reduce((a, b) => a + b, 0)` | `v.iter().fold(0, \|acc, x\| acc + x)` |
+
+---
+
+## 3-5. 구조체 정의
 
 ### 핵심 개념
 
@@ -132,7 +192,7 @@ struct AlwaysEqual;
 
 ---
 
-## 3-5. 구조체 인스턴스 생성
+## 3-6. 구조체 인스턴스 생성
 
 ### 핵심 개념
 
@@ -155,7 +215,7 @@ fn main() {
 
 ---
 
-## 3-6. 메소드 (impl)
+## 3-7. 메소드 (impl)
 
 ### 핵심 개념
 
@@ -181,7 +241,7 @@ impl Rectangle {
 
 ---
 
-## 3-7. 연관 함수
+## 3-8. 연관 함수
 
 ### 핵심 개념
 
@@ -205,7 +265,7 @@ fn main() {
 
 ---
 
-## 3-8. enum 정의
+## 3-9. enum 정의
 
 ### 핵심 개념
 
@@ -225,7 +285,7 @@ enum Message {
 
 ---
 
-## 3-9. match 표현식
+## 3-10. match 표현식
 
 ### 핵심 개념
 
@@ -244,7 +304,7 @@ fn main() {
 
 ---
 
-## 3-10. Option
+## 3-11. Option
 
 ### 핵심 개념
 
@@ -268,7 +328,7 @@ fn main() {
 
 ---
 
-## 3-11. Result
+## 3-12. Result
 
 ### 핵심 개념
 
@@ -287,7 +347,7 @@ fn main() {
 
 ---
 
-## 3-12. if let
+## 3-13. if let
 
 ### 핵심 개념
 
@@ -311,7 +371,7 @@ fn main() {
 
 ---
 
-## 3-13. mod 키워드
+## 3-14. mod 키워드
 
 ### 핵심 개념
 
@@ -329,7 +389,7 @@ fn main() {
 
 ---
 
-## 3-14. pub 키워드
+## 3-15. pub 키워드
 
 ### 핵심 개념
 
@@ -350,7 +410,7 @@ mod my_module {
 
 ---
 
-## 3-15. use 키워드
+## 3-16. use 키워드
 
 ### 핵심 개념
 
@@ -365,7 +425,7 @@ use std::io::Result as IoResult;
 
 ---
 
-## 3-16. 파일로 모듈 분리
+## 3-17. 파일로 모듈 분리
 
 ### 핵심 개념
 

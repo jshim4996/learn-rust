@@ -313,8 +313,20 @@ chapters/
 
 ## STEP 9. 실전 프로젝트
 
-> 고성능 백엔드 API
-> WebAssembly 기반 웹 기능
+> STEP 7~8에서 배운 내용을 실제 프로젝트에 적용하며 학습
+
+### 프로젝트 A: 고성능 백엔드 API
+- [ ] Axum으로 REST API 서버 구축
+- [ ] SQLx로 PostgreSQL 연동
+- [ ] JWT 인증 구현
+- [ ] 에러 처리 (thiserror/anyhow)
+- [ ] 테스트 작성
+
+### 프로젝트 B: WebAssembly 모듈
+- [ ] wasm-pack 프로젝트 생성
+- [ ] 고성능 연산 함수 구현
+- [ ] JavaScript 연동
+- [ ] 웹 페이지에 통합
 
 ---
 
